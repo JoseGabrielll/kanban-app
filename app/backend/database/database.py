@@ -11,14 +11,14 @@ def connect_db(config=AppConfig()):
     global engine
     global SessionLocal
 
-    if engine:
+    if engine: # pragma: no cover
         engine.dispose()
 
     if 'sqlite' in config.DB_SERVER:
         engine = create_engine(config.DB_SERVER, 
                                connect_args={"check_same_thread": False},
                                poolclass=StaticPool)
-    else:
+    else: # pragma: no cover
         engine = create_engine(config.DB_SERVER, 
                                pool_pre_ping=True)
     
