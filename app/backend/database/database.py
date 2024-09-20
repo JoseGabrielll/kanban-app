@@ -1,6 +1,6 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
-from sqlalchemy import create_engine
+from sqlmodel import create_engine
 
 from app.backend.config import AppConfig
 
@@ -25,7 +25,12 @@ def connect_db(config=AppConfig()):
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_metadata(): # TODO: used by alembic
-    pass
+    from sqlmodel import SQLModel
+
+    from app.backend.database.models.user_model import User
+
+    return SQLModel.metadata
+
 
 def get_database():
     database = SessionLocal()
@@ -41,12 +46,12 @@ def get_database_session():
     finally:
         database.close()
 
-# def upgrade_db():
-#     from alembic import command
-#     from alembic.config import Config
+def upgrade_db():
+    from alembic import command
+    from alembic.config import Config
 
-#     alembic_config = Config("alembic.ini")
-#     alembic_config.attributes["configure_logger"] = False
-#     alembic_config.attributes["connection"] = engine
-#     command.upgrade(alembic_config, "head")
+    alembic_config = Config("alembic.ini")
+    alembic_config.attributes["configure_logger"] = False
+    alembic_config.attributes["connection"] = engine
+    command.upgrade(alembic_config, "head")
 

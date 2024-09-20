@@ -61,6 +61,16 @@ The FastAPI application exposes a series of endpoints. To view and test the API,
 - Swagger UI: http://127.0.0.1:8000/docs
 - Redoc: http://127.0.0.1:8000/redoc
 
+## Run Database Migrations
+
+This project uses **Alembic** to handle database migrations. Below are the steps to generate and apply migrations:
+
+```bash
+alembic revision --autogenerate -m "<migration message>"
+
+alembic upgrade head
+```
+
 ## Running Tests
 
 The application is tested with pytest. To execute the tests and application coverage install the requirements-dev.txt in your virtual environment and execute:

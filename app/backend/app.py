@@ -4,7 +4,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.backend.config import AppConfig
-from app.backend.database.database import connect_db, get_database
+from app.backend.database.database import connect_db, get_database, upgrade_db
 
 
 def register_route(application: FastAPI):
@@ -25,7 +25,7 @@ def create_app(config=AppConfig()) -> FastAPI:
     """
     application = FastAPI(title="Kanban Board", version="0.0.1", description="Kanban Board")
     connect_db(config)
-    # upgrade_db()
+    upgrade_db()
     register_route(application)
     register_422_exception_handler(application)
 
