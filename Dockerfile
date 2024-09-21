@@ -9,7 +9,7 @@ COPY ./app/frontend .
 RUN npm run build
 RUN ls -al /frontend/dist
 
-#Building FastAPI api
+# Building FastAPI appication
 FROM python:3.11
 
 WORKDIR /kanban-app
