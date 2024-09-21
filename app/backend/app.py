@@ -1,7 +1,9 @@
+import os
 from fastapi import Depends, FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.backend.config import AppConfig
 from app.backend.database.database import connect_db, get_database, upgrade_db
@@ -13,9 +15,14 @@ def register_route(application: FastAPI):
     Args:
         application (FastAPI): main application
     """
+    from app.backend.route.frontend_route import frontend_router
     from app.backend.route.user_route import user_router
 
+    application.include_router(frontend_router)
     application.include_router(user_router, dependencies = [Depends(get_database)])
+
+    angular_dist_dir = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'dist', 'frontend', 'browser')
+    application.mount("/", StaticFiles(directory=angular_dist_dir, html=True), name="browser")
 
 def create_app(config=AppConfig()) -> FastAPI:
     """It creates the main application
