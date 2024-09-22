@@ -17,8 +17,8 @@ Before you begin, ensure you have met the following requirements:
 
 - **FastAPI** - Web framework for fast and modern APIs
 - **Uvicorn** - ASGI server for running FastAPI applications
-- **Docker** - For containerizing the application
-- **Angular** - 
+- **Docker / Docker Compose** - For containerizing the application
+- **Angular** - Frontend framework for build the project UI
 
 ## How to Run the Project Locally with Docker
 
