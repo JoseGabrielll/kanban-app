@@ -1,8 +1,10 @@
+from dotenv import load_dotenv
 import os
 
 class AppConfig():
     def __init__(self) -> None:
-        self.DB_SERVER = "sqlite:///kanban-board.db"
+        # self.DB_SERVER = "sqlite:///kanban-board.db"
+        self.DB_SERVER = os.getenv("DATABASE_URL")
         # os.environ.get("KEY")
 
 

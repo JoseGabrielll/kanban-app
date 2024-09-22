@@ -11,6 +11,7 @@ Before you begin, ensure you have met the following requirements:
 - **Python 3.11+** (if running locally without Docker): [Install Python](https://www.python.org/downloads/)
 - **pip** (Python package manager): [Install pip](https://pip.pypa.io/en/stable/installation/)
 - **virtualenv** (optional, for creating virtual environments): `pip install virtualenv`
+- create .env file with the following variables: POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, DATABASE_URL
 
 ### Technologies Used
 
@@ -19,7 +20,7 @@ Before you begin, ensure you have met the following requirements:
 - **Docker** - For containerizing the application
 - **Angular** - 
 
-## How to Run the Project Locally
+## How to Run the Project Locally with Docker
 
 ### 1. Clone the Repository
 ```bash
@@ -53,6 +54,31 @@ To stop the running container execute:
 
 ```bash
 docker stop <container-id>
+```
+
+## How to Run the Project Locally with Docker Compose
+
+### 1. Build and Run Application
+```bash
+docker-compose up --build
+```
+
+or 
+
+```bash
+docker-compose up -d
+```
+
+The application will be running at http://localhost:8000.
+
+### 2. Stop and Destroy Containers
+```bash
+docker-compose down
+```
+
+### 3. Stop, Destroy and Delete Volumes (optional)
+```bash
+docker-compose down -v
 ```
 
 ## API Endpoints
